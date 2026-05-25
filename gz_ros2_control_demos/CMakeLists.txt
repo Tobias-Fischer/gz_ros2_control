@@ -7,6 +7,14 @@ export_windows_symbols()
 
 if(NOT WIN32)
   add_compile_options(-Wall -Wextra -Wpedantic)
+  add_compile_definitions(
+    # For math constants
+    # https://docs.microsoft.com/en-us/cpp/c-runtime-library/math-constants?view=vs-2019
+    _USE_MATH_DEFINES
+    # Minimize Windows namespace collision
+    NOMINMAX
+    WIN32_LEAN_AND_MEAN
+  )
 endif()
 
 find_package(ament_cmake REQUIRED)
